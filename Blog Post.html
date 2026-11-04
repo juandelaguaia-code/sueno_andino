@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #2a1d10;
+      overflow-x: hidden;
+      background-color: #b89060;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: url("images/bg-terrazzo.svg") center/cover no-repeat fixed;
+      will-change: transform;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,238,210,0.18), transparent 55%);
+    }
+    .mobile-menu-btn { display: none; }
+    .mobile-overlay { display: none; }
+    @media (max-width: 768px) {
+      .mobile-menu-btn { display: flex !important; }
+      header nav {
+        position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+        flex-direction: column; align-items: flex-start; gap: 0 !important;
+        background: #f0e8d8; padding: 80px 32px 40px !important; z-index: 200;
+        box-shadow: -8px 0 32px rgba(0,0,0,0.15);
+        transition: right 0.35s cubic-bezier(.4,0,.2,1);
+      }
+      header nav.is-open { right: 0; }
+      header nav a {
+        display: block !important; font-size: 18px !important; padding: 14px 0 !important;
+        border-bottom: 1px solid rgba(42,29,16,0.08) !important; width: 100%;
+      }
+      .mobile-overlay { display: block !important; }
+      .mobile-overlay.is-open { opacity: 1; pointer-events: auto; }
+      header > div { padding: 8px 16px !important; }
+      header img { height: 44px !important; }
+      article { padding: 32px 16px 48px !important; }
+      article h1 { font-size: 26px !important; }
+      article h2 { font-size: 20px !important; }
+      blockquote { padding: 16px 20px !important; font-size: 15px !important; }
+      section .recommended-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+      footer > div > div:first-child { flex-direction: column !important; gap: 12px !important; }
+      footer > div > div:nth-child(2) { flex-direction: column !important; gap: 10px !important; align-items: center !important; }
+    }
+  </style>
+</helmet>
+
+<!-- HEADER -->
+<header style="position: sticky; top: 0; left: 0; right: 0; z-index: 100; background: #ebe1c6; border-bottom: 1px solid rgba(122,90,52,0.18);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between;">
+    <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+      <img src="images/logo.jpeg" alt="Sueño Andino" style="height: 64px; width: auto; object-fit: contain; mix-blend-mode: multiply;">
+    </a>
+    <button class="mobile-menu-btn" onClick="{{ toggleMenu }}" style="display: none; align-items: center; justify-content: center; width: 44px; height: 44px; background: none; border: none; cursor: pointer; color: #2a1d10; z-index: 201;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+    <div class="mobile-overlay {{ overlayClass }}" onClick="{{ closeMenu }}" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 199; opacity: 0; pointer-events: none; transition: opacity 0.3s;"></div>
+    <nav class="{{ navClass }}" style="display: flex; align-items: center; gap: 36px;">
+      <a href="index.html" style="text-decoration: none; color: #3b2a1a; font-size: 15px; font-weight: 500;">Inicio</a>
+      <a href="Nosotros.html" style="text-decoration: none; color: #3b2a1a; font-size: 15px; font-weight: 500;">Nosotros</a>
+      <a href="Imagenes.html" style="text-decoration: none; color: #3b2a1a; font-size: 15px; font-weight: 500;">Imagenes</a>
+      <a href="Blog.html" style="text-decoration: none; color: #3b2a1a; font-size: 15px; font-weight: 500; border-bottom: 2px solid #3b2a1a; padding-bottom: 2px;">Blog</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ARTICLE HERO IMAGE -->
+<div style="width: 100%; max-height: 480px; overflow: hidden;">{{ heroImageEl }}</div>
+
+<!-- ARTICLE CONTENT -->
+<article style="max-width: 740px; margin: 0 auto; padding: 56px 24px 64px;">
+
+  <!-- Back link -->
+  <a href="Blog.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: #4a7c6a; text-decoration: none; margin-bottom: 32px;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+    Volver al blog
+  </a>
+
+  <!-- Category + Date -->
+  <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+    <span style="font-size: 12px; font-weight: 600; color: #ffffff; background: #4a7c6a; padding: 4px 14px; border-radius: 20px;">{{ category }}</span>
+    <span style="font-size: 14px; color: #888;">{{ date }}</span>
+  </div>
+
+  <!-- Title -->
+  <h1 style="font-size: 38px; font-weight: 800; color: #2a1d10; line-height: 1.25; margin-bottom: 24px; letter-spacing: -0.02em;">{{ title }}</h1>
+
+  <!-- Author -->
+  <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid #e8e8e8;">
+    <div style="width: 44px; height: 44px; border-radius: 50%; background: #4a7c6a; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px;">{{ authorInitial }}</div>
+    <div>
+      <p style="font-size: 15px; font-weight: 600; color: #2a1d10;">{{ author }}</p>
+      <p style="font-size: 13px; color: #888;">{{ readTime }}</p>
+    </div>
+  </div>
+
+  <!-- Body paragraphs -->
+  <div style="font-size: 16px; color: #333; line-height: 1.85; display: flex; flex-direction: column; gap: 24px;">
+    <p>{{ paragraph1 }}</p>
+    <h2 style="font-size: 24px; font-weight: 700; color: #2a1d10; margin-top: 8px;">{{ subtitle1 }}</h2>
+    <p>{{ paragraph2 }}</p>
+    <p>{{ paragraph3 }}</p>
+    <div style="border-radius: 12px; overflow: hidden; margin: 8px 0;">{{ bodyImageEl }}</div>
+    <h2 style="font-size: 24px; font-weight: 700; color: #2a1d10; margin-top: 8px;">{{ subtitle2 }}</h2>
+    <p>{{ paragraph4 }}</p>
+    <p>{{ paragraph5 }}</p>
+
+    <!-- Quote block -->
+    <blockquote style="border-left: 4px solid #4a7c6a; padding: 20px 28px; background: #f7faf8; border-radius: 0 8px 8px 0; margin: 8px 0; font-style: italic; font-size: 17px; color: #2a2a2a; line-height: 1.75;">
+      {{ quote }}
+    </blockquote>
+
+    <p>{{ paragraph6 }}</p>
+  </div>
+
+  <!-- Share / Tags -->
+  <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+      <span style="font-size: 13px; font-weight: 600; color: #555;">Etiquetas:</span>
+      <span style="font-size: 12px; color: #4a7c6a; background: transparent; padding: 4px 12px; border-radius: 20px;">{{ tag1 }}</span>
+      <span style="font-size: 12px; color: #4a7c6a; background: transparent; padding: 4px 12px; border-radius: 20px;">{{ tag2 }}</span>
+      <span style="font-size: 12px; color: #4a7c6a; background: transparent; padding: 4px 12px; border-radius: 20px;">{{ tag3 }}</span>
+    </div>
+  </div>
+</article>
+
+<!-- RECOMMENDED POSTS -->
+<section style="background: transparent; padding: 72px 24px 88px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <h3 style="font-size: 26px; font-weight: 700; color: #2a1d10; margin-bottom: 40px; text-align: center;">Sigue leyendo</h3>
+    <div class="recommended-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+
+      {{ recommendedCards }}
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #1c1409; padding: 48px 24px 32px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 32px; margin-bottom: 32px;">
+      <p style="font-size: 15px; font-weight: 600; color: #ffffff;">Contacto</p>
+      <a href="mailto:contacto@sueñoandino.org" style="font-size: 14px; color: rgba(255,255,255,0.85); text-decoration: underline;">contacto@sueñoandino.org</a>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 24px;">
+      <a href="#" style="font-size: 13px; color: rgba(255,255,255,0.7); text-decoration: underline;">Terminos y condiciones</a>
+      <a href="#" style="font-size: 13px; color: rgba(255,255,255,0.7); text-decoration: underline;">Politicas de cookies</a>
+      <a href="#" style="font-size: 13px; color: rgba(255,255,255,0.7); text-decoration: underline;">Politicas de privacidad</a>
+    </div>
+    <p style="font-size: 13px; color: rgba(255,255,255,0.5); text-align: center;">© 2025. All rights reserved.</p>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false };
+
+  getPostData() {
+    const params = new URLSearchParams(window.location.search);
+    const postId = params.get('post') || 'converge-2026';
+
+    const posts = {
+      'converge-2026': {
+        heroImage: 'images/galeria-converge.jpg',
+        category: 'Destacado',
+        date: '15 Junio, 2026',
+        title: 'Converge 2026: Encuentro de Regeneración Territorial en Latinoamérica',
+        author: 'Martín Araneda',
+        authorInitial: 'M',
+        readTime: '8 min de lectura',
+        bodyImage: 'images/galeria-comunidad.jpg',
+        subtitle1: 'Un encuentro que transformó perspectivas',
+        paragraph1: 'Más de 200 personas de Chile, Perú, Costa Rica y México se reunieron en el corazón de los Andes para compartir experiencias de regeneración territorial. Fue un espacio donde las fronteras se disolvieron y las visiones convergieron en un propósito común: restaurar la relación entre las personas y sus territorios.',
+        paragraph2: 'Durante tres días intensos, los participantes vivieron talleres prácticos en terreno, diálogos profundos sobre gobernanza colaborativa y sesiones de co-creación que pusieron en el centro la sabiduría de las comunidades locales. Cada actividad fue diseñada para ir más allá de lo conceptual y tocar la experiencia directa.',
+        paragraph3: 'Las mañanas comenzaban con caminatas por el territorio, observando los ecosistemas locales y dialogando con las comunidades que los habitan. Las tardes se dedicaban a talleres donde los participantes compartían sus propias experiencias de regeneración en sus países de origen.',
+        subtitle2: 'Aprendizajes que trascienden fronteras',
+        paragraph4: 'Uno de los hallazgos más valiosos fue descubrir que, a pesar de las diferencias culturales y geográficas, los desafíos y las aspiraciones de las comunidades latinoamericanas son sorprendentemente similares. La desconexión con el territorio, la pérdida de saberes ancestrales y la necesidad de nuevos modelos económicos son temas transversales.',
+        paragraph5: 'El encuentro cerró con compromisos concretos de colaboración entre las organizaciones participantes, incluyendo un programa de intercambio de experiencias que se implementará durante los próximos dos años, conectando territorios y fortaleciendo redes de aprendizaje mutuo.',
+        quote: '"Regenerar no es volver al pasado, es aprender del pasado para construir un futuro donde la vida florezca en todas sus formas." — Reflexión colectiva, Converge 2026',
+        paragraph6: 'El legado de Converge 2026 no se mide solo en los acuerdos firmados, sino en las relaciones humanas que se tejieron, las perspectivas que se ampliaron y la certeza compartida de que otro modelo de desarrollo es posible cuando las comunidades se encuentran y deciden caminar juntas.',
+        tag1: 'Regeneración',
+        tag2: 'Territorio',
+        tag3: 'Latinoamérica'
+      },
+      'educacion-regenerativa': {
+        heroImage: 'images/educacion-regenerativa.jpg',
+        category: 'Educación',
+        date: '10 Junio, 2026',
+        title: '¿Qué es la educación regenerativa y por qué importa?',
+        author: 'Alejandra Vásquez',
+        authorInitial: 'A',
+        readTime: '6 min de lectura',
+        bodyImage: 'images/galeria7.jpg',
+        subtitle1: 'Más allá de la educación tradicional',
+        paragraph1: 'La educación regenerativa es un enfoque que reconecta a las personas con su territorio y fortalece las capacidades locales. No se trata simplemente de transmitir conocimiento, sino de crear experiencias de aprendizaje que transformen la relación de las personas con su entorno.',
+        paragraph2: 'Este modelo educativo parte de una premisa fundamental: el territorio es el mejor maestro. Cada ecosistema, cada comunidad, cada tradición local contiene lecciones valiosas que los sistemas educativos convencionales han ignorado durante décadas.',
+        paragraph3: 'En Sueño Andino hemos desarrollado metodologías que combinan el aprendizaje vivencial con la reflexión crítica, creando espacios donde los participantes no solo adquieren conocimientos, sino que desarrollan una sensibilidad profunda hacia los sistemas vivos que los rodean.',
+        subtitle2: 'El impacto en las comunidades',
+        paragraph4: 'Los resultados de este enfoque son tangibles: comunidades más cohesionadas, líderes locales empoderados y proyectos que nacen desde las necesidades reales del territorio. La educación regenerativa no impone soluciones desde afuera; facilita que las comunidades descubran y potencien sus propias fortalezas.',
+        paragraph5: 'A través de nuestros programas, más de 1100 personas han experimentado esta forma de aprender. Muchas de ellas han replicado lo aprendido en sus propios contextos, generando un efecto multiplicador que va mucho más allá de nuestro alcance directo.',
+        quote: '"Aprender desde el territorio es reconocer que cada lugar tiene su propia inteligencia, su propia forma de enseñar." — Alejandra Vásquez',
+        paragraph6: 'La educación regenerativa no es una moda ni una tendencia pasajera. Es una respuesta necesaria a los desafíos de nuestro tiempo, una invitación a aprender de manera diferente para vivir de manera diferente.',
+        tag1: 'Educación',
+        tag2: 'Comunidad',
+        tag3: 'Territorio'
+      },
+      'emprendimiento-social': {
+        heroImage: 'images/emprendimiento-social.jpg',
+        category: 'Emprendimiento',
+        date: '2 Junio, 2026',
+        title: 'Emprendimiento social: economía al servicio del territorio',
+        author: 'Pedro Smith',
+        authorInitial: 'P',
+        readTime: '7 min de lectura',
+        bodyImage: 'images/galeria-llama.jpg',
+        subtitle1: 'Repensar la economía desde lo local',
+        paragraph1: 'El emprendimiento social regenerativo propone una visión radicalmente diferente de la economía: una donde el éxito no se mide solo en términos financieros, sino en la capacidad de generar bienestar para las personas y los ecosistemas que las sostienen.',
+        paragraph2: 'En las comunidades andinas, esta visión no es nueva. Durante siglos, las economías locales han funcionado bajo principios de reciprocidad, complementariedad y cuidado del territorio. El desafío actual es integrar esta sabiduría ancestral con herramientas modernas de gestión.',
+        paragraph3: 'Los emprendimientos que acompañamos no buscan competir en mercados globalizados con las mismas reglas de siempre. Buscan crear valor de una manera que fortalezca las relaciones comunitarias y restaure los ecosistemas locales.',
+        subtitle2: 'De la teoría a la práctica',
+        paragraph4: 'Hemos trabajado con emprendedores locales en la creación de cadenas de valor que respetan los ciclos naturales, valoran el trabajo comunitario y distribuyen los beneficios de manera justa. Los resultados hablan por sí solos: comunidades más prósperas y territorios más vivos.',
+        paragraph5: 'El acompañamiento incluye formación en modelos de negocio regenerativos, acceso a redes de comercialización justa y mentoría continua. Cada emprendimiento es único porque nace del contexto específico de su territorio.',
+        quote: '"Una economía regenerativa es aquella donde cada transacción deja el mundo un poco mejor de lo que lo encontró."',
+        paragraph6: 'El camino del emprendimiento social regenerativo no es fácil, pero es profundamente gratificante. Cada proyecto que florece es una demostración de que es posible hacer economía de otra manera.',
+        tag1: 'Emprendimiento',
+        tag2: 'Economía',
+        tag3: 'Comunidad'
+      },
+      'cadenas-valor': {
+        heroImage: 'images/consultoria-territorial.jpg',
+        category: 'Territorio',
+        date: '25 Mayo, 2026',
+        title: 'Cadenas de valor regenerativas: del concepto a la práctica',
+        author: 'Martín Araneda',
+        authorInitial: 'M',
+        readTime: '7 min de lectura',
+        bodyImage: 'images/galeria8.jpg',
+        subtitle1: 'Diseñar sistemas que cuiden la vida',
+        paragraph1: 'Las cadenas de valor regenerativas son sistemas económicos diseñados para restaurar y fortalecer los territorios en los que operan. A diferencia de las cadenas de valor convencionales, que extraen recursos y concentran beneficios, estas cadenas distribuyen valor y regeneran ecosistemas.',
+        paragraph2: 'El diseño de estas cadenas requiere un entendimiento profundo del territorio: sus recursos, sus comunidades, sus dinámicas ecológicas y sus potencialidades. No se puede diseñar desde un escritorio; se diseña caminando el territorio y escuchando a quienes lo habitan.',
+        paragraph3: 'En Sueño Andino facilitamos procesos de co-diseño donde todos los actores del territorio participan: productores, comunidades, gobiernos locales, organizaciones civiles e inversores comprometidos con el impacto positivo.',
+        subtitle2: 'Gobernanza colaborativa como base',
+        paragraph4: 'Una cadena de valor regenerativa solo funciona si tiene una gobernanza que refleje sus valores. Esto significa espacios de decisión compartida, transparencia en la distribución de beneficios y mecanismos de resolución de conflictos que respeten las tradiciones locales.',
+        paragraph5: 'Hemos facilitado la creación de cadenas de valor regenerativas en sectores como turismo comunitario, agricultura agroecológica y artesanía local, siempre adaptando el modelo a las realidades específicas de cada territorio.',
+        quote: '"No se trata de crear cadenas de valor más eficientes, sino cadenas de valor más vivas, más justas, más capaces de regenerar lo que tocan."',
+        paragraph6: 'El futuro de la economía territorial está en estas cadenas que integran planificación pública, inversión privada responsable y la participación activa de las comunidades. Cada proyecto que acompañamos nos confirma que este camino es viable y transformador.',
+        tag1: 'Territorio',
+        tag2: 'Gobernanza',
+        tag3: 'Economía'
+      },
+      'gobernanza-colaborativa': {
+        heroImage: 'images/galeria-comunidad.jpg',
+        category: 'Comunidad',
+        date: '18 Mayo, 2026',
+        title: 'Gobernanza colaborativa: el poder de decidir juntos',
+        author: 'Alejandra Vásquez',
+        authorInitial: 'A',
+        readTime: '5 min de lectura',
+        bodyImage: 'images/nosotros-presentacion.jpg',
+        subtitle1: 'Decidir juntos, crecer juntos',
+        paragraph1: 'La gobernanza colaborativa es mucho más que un método de toma de decisiones. Es una forma de entender el poder como algo compartido, distribuido y al servicio del bienestar colectivo. En los territorios donde trabajamos, esta práctica tiene raíces profundas en las tradiciones comunitarias.',
+        paragraph2: 'Las comunidades andinas han practicado formas de gobernanza colectiva durante siglos. Asambleas comunitarias, trabajo colectivo y sistemas de rotación de responsabilidades son expresiones vivas de una sabiduría que el mundo moderno necesita urgentemente recuperar.',
+        paragraph3: 'En Sueño Andino no inventamos la gobernanza colaborativa; la facilitamos, la fortalecemos y la adaptamos a los desafíos contemporáneos. Creamos espacios donde las voces de todos los actores del territorio pueden ser escuchadas y consideradas.',
+        subtitle2: 'Territorios más resilientes',
+        paragraph4: 'Los territorios con gobernanza colaborativa fuerte son más resilientes ante las crisis. Cuando las decisiones se toman colectivamente, la comunidad se siente parte del proceso y asume la responsabilidad de su implementación.',
+        paragraph5: 'Nuestro trabajo incluye formación en liderazgo colaborativo, diseño de procesos participativos y acompañamiento en la creación de estructuras de gobernanza que integren la diversidad de perspectivas presentes en cada territorio.',
+        quote: '"El poder real no está en mandar, sino en crear las condiciones para que todos puedan contribuir con lo mejor de sí mismos."',
+        paragraph6: 'La gobernanza colaborativa es el fundamento sobre el cual se construye cualquier proceso regenerativo genuino. Sin participación auténtica, sin escucha profunda, sin distribución del poder, no hay regeneración posible.',
+        tag1: 'Comunidad',
+        tag2: 'Gobernanza',
+        tag3: 'Participación'
+      },
+      'dialogos-territorio': {
+        heroImage: 'images/galeria7.jpg',
+        category: 'Experiencias',
+        date: '10 Mayo, 2026',
+        title: 'Diálogos en territorio: escuchar antes de actuar',
+        author: 'Pedro Smith',
+        authorInitial: 'P',
+        readTime: '5 min de lectura',
+        bodyImage: 'images/galeria-converge.jpg',
+        subtitle1: 'La escucha como punto de partida',
+        paragraph1: 'Antes de diseñar cualquier intervención, antes de proponer soluciones, antes de planificar, hay un paso fundamental que a menudo se omite: escuchar. Escuchar al territorio, a sus habitantes, a sus ecosistemas, a sus historias.',
+        paragraph2: 'Los diálogos en territorio son espacios facilitados donde las personas comparten sus experiencias, sus preocupaciones y sus sueños para el lugar que habitan. No son reuniones informativas ni talleres de capacitación; son encuentros genuinos donde la palabra circula libremente.',
+        paragraph3: 'En nuestra experiencia, estos diálogos revelan una inteligencia colectiva que ningún diagnóstico técnico puede capturar. Las comunidades conocen su territorio mejor que cualquier experto externo, y sus propuestas son más pertinentes porque nacen de la vivencia cotidiana.',
+        subtitle2: 'De la escucha a la acción',
+        paragraph4: 'Los diálogos no son un fin en sí mismos; son el inicio de procesos más amplios de transformación territorial. Pero son un inicio imprescindible, porque garantizan que las acciones que se emprendan respondan a las necesidades reales y cuenten con el respaldo de la comunidad.',
+        paragraph5: 'Hemos facilitado más de 40 diálogos territoriales en tres países, y cada uno ha sido una experiencia única. Lo que permanece constante es la potencia que tiene el acto de escuchar con atención y respeto.',
+        quote: '"No venimos a enseñar nada. Venimos a escuchar, y en esa escucha, todos aprendemos."',
+        paragraph6: 'Abrir espacios de escucha genuina es el primer paso hacia cualquier proceso regenerativo. Es un acto de humildad, de respeto y de confianza en la sabiduría de las comunidades.',
+        tag1: 'Territorio',
+        tag2: 'Diálogo',
+        tag3: 'Comunidad'
+      },
+      'regeneracion-sostenibilidad': {
+        heroImage: 'images/galeria8.jpg',
+        category: 'Reflexión',
+        date: '1 Mayo, 2026',
+        title: 'Regeneración: más allá de la sostenibilidad',
+        author: 'Martín Araneda',
+        authorInitial: 'M',
+        readTime: '6 min de lectura',
+        bodyImage: 'images/hero-bg.jpg',
+        subtitle1: '¿Por qué sostenibilidad no alcanza?',
+        paragraph1: 'Sostenibilidad significa mantener las cosas como están. Pero ¿qué pasa cuando las cosas como están ya no funcionan? ¿Cuando los ecosistemas están degradados, las comunidades fragmentadas y los modelos económicos agotados? Sostener lo insostenible no tiene sentido.',
+        paragraph2: 'La regeneración propone algo diferente: no solo detener el daño, sino restaurar activamente los sistemas vivos. No solo reducir el impacto negativo, sino generar impacto positivo. No solo conservar, sino hacer florecer.',
+        paragraph3: 'Este cambio de paradigma tiene implicaciones profundas para cómo entendemos el desarrollo, la economía, la educación y nuestra relación con el territorio. No se trata de hacer las mismas cosas de manera más verde, sino de repensar fundamentalmente qué hacemos y para qué.',
+        subtitle2: 'Regeneración en la práctica',
+        paragraph4: 'En los territorios donde trabajamos, la regeneración se manifiesta de muchas formas: suelos que recuperan su fertilidad, comunidades que retoman sus tradiciones de gobernanza, economías locales que generan prosperidad sin destruir. Cada caso es diferente, pero el principio es el mismo: restaurar la capacidad de los sistemas vivos para autorrenovarse.',
+        paragraph5: 'La regeneración no es una receta que se aplica desde fuera. Es un proceso que emerge cuando se dan las condiciones adecuadas: confianza, participación, conocimiento del territorio y una visión compartida de futuro.',
+        quote: '"Regenerar es recordar que somos parte de un sistema vivo, y que nuestra tarea no es dominarlo, sino cuidarlo para que pueda seguir creando vida."',
+        paragraph6: 'El camino de la regeneración es largo y no tiene atajos. Pero cada paso que damos en esa dirección es un paso hacia un futuro donde la vida, en todas sus formas, pueda florecer.',
+        tag1: 'Regeneración',
+        tag2: 'Reflexión',
+        tag3: 'Territorio'
+      }
+    };
+
+    return posts[postId] || posts['converge-2026'];
+  }
+
+  getRecommended(currentId) {
+    const allPosts = [
+      { id: 'converge-2026', image: 'images/galeria-converge.jpg', category: 'Destacado', date: '15 Jun 2026', title: 'Converge 2026: Encuentro de Regeneración Territorial', excerpt: 'Más de 200 personas se reunieron para compartir experiencias de regeneración territorial.', url: 'Blog Post.html?post=converge-2026' },
+      { id: 'educacion-regenerativa', image: 'images/educacion-regenerativa.jpg', category: 'Educación', date: '10 Jun 2026', title: '¿Qué es la educación regenerativa y por qué importa?', excerpt: 'Un enfoque educativo que reconecta a las personas con su territorio.', url: 'Blog Post.html?post=educacion-regenerativa' },
+      { id: 'emprendimiento-social', image: 'images/emprendimiento-social.jpg', category: 'Emprendimiento', date: '2 Jun 2026', title: 'Emprendimiento social: economía al servicio del territorio', excerpt: 'Cómo los emprendimientos con propósito transforman las economías locales.', url: 'Blog Post.html?post=emprendimiento-social' },
+      { id: 'cadenas-valor', image: 'images/consultoria-territorial.jpg', category: 'Territorio', date: '25 May 2026', title: 'Cadenas de valor regenerativas: del concepto a la práctica', excerpt: 'Diseñar y gestionar cadenas de valor que cuidan la vida en los territorios.', url: 'Blog Post.html?post=cadenas-valor' },
+      { id: 'gobernanza-colaborativa', image: 'images/galeria-comunidad.jpg', category: 'Comunidad', date: '18 May 2026', title: 'Gobernanza colaborativa: el poder de decidir juntos', excerpt: 'Comunidades que participan en la toma de decisiones construyen territorios más resilientes.', url: 'Blog Post.html?post=gobernanza-colaborativa' },
+      { id: 'dialogos-territorio', image: 'images/galeria7.jpg', category: 'Experiencias', date: '10 May 2026', title: 'Diálogos en territorio: escuchar antes de actuar', excerpt: 'La importancia de abrir espacios de escucha genuina como primer paso regenerativo.', url: 'Blog Post.html?post=dialogos-territorio' },
+      { id: 'regeneracion-sostenibilidad', image: 'images/galeria8.jpg', category: 'Reflexión', date: '1 May 2026', title: 'Regeneración: más allá de la sostenibilidad', excerpt: 'Por qué sostenibilidad no es suficiente y cómo la regeneración propone restaurar.', url: 'Blog Post.html?post=regeneracion-sostenibilidad' }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const postId = params.get('post') || 'converge-2026';
+    const filtered = allPosts.filter(p => p.id !== postId);
+    const shuffled = filtered.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  }
+
+  renderVals() {
+    const h = React.createElement;
+    const post = this.getPostData();
+    const recommended = this.getRecommended();
+
+    const heroImageEl = post.heroImage
+      ? h('img', { src: post.heroImage, alt: '', style: { width: '100%', height: '480px', objectFit: 'cover', display: 'block' } })
+      : null;
+
+    const bodyImageEl = post.bodyImage
+      ? h('img', { src: post.bodyImage, alt: '', style: { width: '100%', height: 'auto', display: 'block' } })
+      : null;
+
+    const recommendedCards = recommended.map((rec, i) =>
+      h('a', { key: i, href: rec.url, style: { textDecoration: 'none', color: 'inherit', borderRadius: '12px', overflow: 'hidden', background: '#ffffff', boxShadow: '0 1px 8px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column' } },
+        h('div', { style: { aspectRatio: '16/10', overflow: 'hidden' } },
+          h('img', { src: rec.image, alt: '', style: { width: '100%', height: '100%', objectFit: 'cover' } })
+        ),
+        h('div', { style: { padding: '24px' } },
+          h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' } },
+            h('span', { style: { fontSize: '12px', fontWeight: '500', color: '#4a7c6a', background: '#eef5f1', padding: '3px 10px', borderRadius: '20px' } }, rec.category),
+            h('span', { style: { fontSize: '12px', color: '#999' } }, rec.date)
+          ),
+          h('h4', { style: { fontSize: '17px', fontWeight: '700', color: '#1a1a1a', marginBottom: '10px', lineHeight: '1.35' } }, rec.title),
+          h('p', { style: { fontSize: '14px', color: '#666', lineHeight: '1.7' } }, rec.excerpt)
+        )
+      )
+    );
+
+    return {
+      ...post, heroImageEl, bodyImageEl, recommendedCards,
+      navClass: this.state.menuOpen ? 'is-open' : '',
+      overlayClass: this.state.menuOpen ? 'is-open' : '',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

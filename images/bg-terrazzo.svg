@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1800" viewBox="0 0 1800 1800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix values="0 0 0 0 0.22&#xA;                             0 0 0 0 0.14&#xA;                             0 0 0 0 0.08&#xA;                             0 0 0 0.55 0"></feColorMatrix>
+    </filter>
+
+    
+    <filter id="cracks" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="turbulence" baseFrequency="0.006 0.012" numOctaves="4" seed="9"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" scale="180"></feDisplacementMap>
+    </filter>
+
+    
+    <filter id="waterFlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="turbulence" baseFrequency="0.008 0.025" numOctaves="3" seed="11"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" scale="120"></feDisplacementMap>
+      <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+    </filter>
+
+    
+    <filter id="soften">
+      <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+    </filter>
+
+    
+    <radialGradient id="earthBase" cx="40%" cy="35%" r="85%">
+      <stop offset="0%" stop-color="#d4b48a"></stop>
+      <stop offset="35%" stop-color="#c19c70"></stop>
+      <stop offset="70%" stop-color="#a3825b"></stop>
+      <stop offset="100%" stop-color="#7d6240"></stop>
+    </radialGradient>
+
+    
+    <linearGradient id="waterVein" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a4d6f" stop-opacity="0"></stop>
+      <stop offset="25%" stop-color="#3a6890" stop-opacity="0.85"></stop>
+      <stop offset="50%" stop-color="#4b85a8" stop-opacity="0.95"></stop>
+      <stop offset="75%" stop-color="#2f5577" stop-opacity="0.85"></stop>
+      <stop offset="100%" stop-color="#1f3a52" stop-opacity="0"></stop>
+    </linearGradient>
+
+    
+    <linearGradient id="waterShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7ab0d6" stop-opacity="0"></stop>
+      <stop offset="50%" stop-color="#a4cce8" stop-opacity="0.5"></stop>
+      <stop offset="100%" stop-color="#7ab0d6" stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+
+  
+  <rect width="100%" height="100%" fill="url(#earthBase)"></rect>
+
+  
+  <g opacity="0.55">
+    <ellipse cx="280" cy="240" rx="420" ry="320" fill="#c89868"></ellipse>
+    <ellipse cx="1450" cy="380" rx="380" ry="280" fill="#9d7848"></ellipse>
+    <ellipse cx="200" cy="1200" rx="500" ry="380" fill="#b89060"></ellipse>
+    <ellipse cx="1500" cy="1480" rx="450" ry="350" fill="#a87a4c"></ellipse>
+    <ellipse cx="900" cy="900" rx="600" ry="400" fill="#bb8c5a" opacity="0.6"></ellipse>
+  </g>
+
+  
+  <g filter="url(#cracks)" opacity="0.32">
+    <path d="M 0 600 L 1800 580" stroke="#3a2818" stroke-width="3" fill="none"></path>
+    <path d="M 0 1100 L 1800 1150" stroke="#3a2818" stroke-width="2.5" fill="none"></path>
+    <path d="M 400 0 L 380 1800" stroke="#3a2818" stroke-width="2" fill="none"></path>
+    <path d="M 1200 0 L 1240 1800" stroke="#3a2818" stroke-width="2" fill="none"></path>
+    <path d="M 0 200 L 1800 240" stroke="#4a3320" stroke-width="1.5" fill="none"></path>
+    <path d="M 0 1450 L 1800 1400" stroke="#4a3320" stroke-width="1.5" fill="none"></path>
+    <path d="M 800 0 L 820 1800" stroke="#4a3320" stroke-width="1.5" fill="none"></path>
+  </g>
+
+  
+  <g filter="url(#waterFlow)">
+    <path d="M 1800 200 Q 1500 500 1300 700 T 900 1100 Q 700 1300 500 1500 L 800 1800 L 1800 1800 L 1800 200 Z" fill="url(#waterVein)" opacity="0.55"></path>
+    
+    <ellipse cx="200" cy="500" rx="280" ry="180" fill="url(#waterVein)" opacity="0.4" transform="rotate(-25 200 500)"></ellipse>
+  </g>
+
+  
+  <g filter="url(#soften)" opacity="0.6">
+    <path d="M 1700 280 Q 1450 580 1250 760 T 850 1140 Q 670 1330 480 1520" stroke="url(#waterShine)" stroke-width="14" fill="none" opacity="0.7"></path>
+    <path d="M 1750 320 Q 1500 620 1280 800 T 880 1170" stroke="#a8d2ef" stroke-width="2" fill="none" opacity="0.45"></path>
+    <path d="M 1680 380 Q 1430 680 1230 850 T 830 1220" stroke="#86b8d9" stroke-width="1.5" fill="none" opacity="0.5"></path>
+  </g>
+
+  
+  <g filter="url(#cracks)" opacity="0.45">
+    <path d="M 1300 720 L 1150 800" stroke="#26404e" stroke-width="3" fill="none"></path>
+    <path d="M 1000 1040 L 880 1100" stroke="#26404e" stroke-width="2.5" fill="none"></path>
+    <path d="M 720 1340 L 620 1390" stroke="#26404e" stroke-width="2" fill="none"></path>
+  </g>
+
+  
+  <rect width="100%" height="100%" filter="url(#grain)" opacity="0.85"></rect>
+
+  
+  <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+    <stop offset="60%" stop-color="#000" stop-opacity="0"></stop>
+    <stop offset="100%" stop-color="#1a0e02" stop-opacity="0.35"></stop>
+  </radialGradient>
+  <rect width="100%" height="100%" fill="url(#vignette)"></rect>
+</svg>
