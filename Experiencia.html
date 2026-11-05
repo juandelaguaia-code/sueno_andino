@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuestra experiencia · Sueño Andino</title>
+<meta name="description" content="Cuatro proyectos y programas destacados de la Fundación Sueño Andino.">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #2a1d10; overflow-x: hidden; background-color: #b89060; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: -2; background: url("images/bg-terrazzo.svg") center/cover no-repeat fixed; will-change: transform; }
+    body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 50% 0%, rgba(255,238,210,0.18), transparent 55%); }
+    img { max-width: 100%; }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    @keyframes pulse-dot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.6; } }
+    .pulse-dot { animation: pulse-dot 1.8s ease-in-out infinite; }
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(.2,.6,.2,1), transform 0.9s cubic-bezier(.2,.6,.2,1); }
+    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+    [data-reveal-delay="1"] { transition-delay: 0.08s; } [data-reveal-delay="2"] { transition-delay: 0.16s; } [data-reveal-delay="3"] { transition-delay: 0.24s; }
+
+    /* Header / nav */
+    .site-header { position: sticky; top: 0; z-index: 100; background: #f0e8d8; border-bottom: 1px solid rgba(122,90,52,0.18); }
+    .site-header .bar { max-width: 1280px; margin: 0 auto; padding: 10px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .site-header .logo img { height: 64px; width: auto; object-fit: contain; mix-blend-mode: multiply; display: block; }
+    .site-header nav { display: flex; align-items: center; gap: 26px; }
+    .nav-link { position: relative; text-decoration: none; color: #2a1d10; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; transition: color 0.3s; }
+    .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: #2a1d10; transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(.2,.6,.2,1); }
+    .nav-link:hover::after, .nav-link.is-active::after { transform: scaleX(1); }
+    .nav-cta { text-decoration: none; padding: 10px 22px; background: #2a1d10; color: #f4ebd9; font-size: 13px; font-weight: 600; border-radius: 999px; letter-spacing: 0.03em; white-space: nowrap; }
+    .mobile-menu-btn { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; background: none; border: none; cursor: pointer; color: #2a1d10; z-index: 201; }
+    .mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 199; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+
+    /* Botones */
+    .cta-primary { transition: transform 0.35s, box-shadow 0.35s, background 0.35s; }
+    .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 38px -10px rgba(53,124,101,0.55); }
+    .cta-secondary { transition: background 0.35s, color 0.35s, border-color 0.35s; }
+    .cta-secondary:hover { background: rgba(42,29,16,0.92); color: #fff; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 30px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 600; font-family: inherit; }
+    .btn-green { background: #357C65; color: #fff; }
+    .btn-dark { background: #2a1d10; color: #f4ebd9; }
+    .btn-ghost { background: transparent; color: #2a1d10; border: 1px solid rgba(42,29,16,0.35); }
+
+    /* Layout común */
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    .section { position: relative; padding: 96px 24px; }
+    .page-hero { padding: 88px 24px 40px; text-align: center; }
+    .eyebrow { font-size: 12px; font-weight: 600; color: #357C65; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 18px; }
+    .h-display { font-family: 'Instrument Serif', serif; font-weight: 400; color: #2a1d10; letter-spacing: -0.015em; line-height: 1.05; }
+    .h1 { font-size: clamp(42px, 5.8vw, 72px); }
+    .h2 { font-size: clamp(34px, 4.6vw, 56px); }
+    .lede { font-size: 17px; color: rgba(42,29,16,0.78); line-height: 1.7; max-width: 700px; margin: 20px auto 0; }
+    .glass { background: rgba(244,235,217,0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(122,90,52,0.18); border-radius: 20px; box-shadow: 0 20px 44px -14px rgba(40,25,10,0.25); }
+    .prose { font-size: 15.5px; color: #2a1d10; line-height: 1.85; }
+    .prose p + p { margin-top: 16px; }
+    .section-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 32px; }
+    .chip { padding: 9px 18px; border-radius: 999px; border: 1px solid rgba(42,29,16,0.25); background: rgba(244,235,217,0.6); color: #2a1d10; font-size: 13px; font-weight: 500; text-decoration: none; transition: background 0.3s, color 0.3s; }
+    .chip:hover { background: #2a1d10; color: #f4ebd9; }
+
+    /* Tarjetas */
+    .card { background: rgba(244,235,217,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(122,90,52,0.18); border-radius: 18px; overflow: hidden; transition: transform 0.5s cubic-bezier(.2,.6,.2,1), box-shadow 0.5s; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(40,25,10,0.32); }
+    .card .thumb { overflow: hidden; aspect-ratio: 4/3; background: #8a6a45; }
+    .card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.2,.6,.2,1); }
+    .card:hover .thumb img { transform: scale(1.07); }
+    .card .body { padding: 26px 26px 30px; }
+    .card h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 10px; }
+    .card p { font-size: 14.5px; color: rgba(42,29,16,0.75); line-height: 1.7; }
+    .num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: #357C65; color: #fff; font-size: 12px; font-weight: 700; margin-bottom: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 28px; }
+    .grid-5 > * { grid-column: span 2; }
+    .grid-5 > *:nth-child(4) { grid-column: 2 / span 2; }
+    .grid-5 > *:nth-child(5) { grid-column: 4 / span 2; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .more { display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 600; color: #357C65; text-decoration: none; }
+    .more:hover { text-decoration: underline; }
+    .tag { display: inline-block; font-size: 12px; font-weight: 600; color: #357C65; background: rgba(53,124,101,0.12); padding: 4px 12px; border-radius: 999px; }
+
+    /* Equipo */
+    .team { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; max-width: 800px; margin: 0 auto; }
+    .member { width: 240px; padding: 22px 18px 26px; text-align: center; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+    .member:hover { transform: translateY(-6px); }
+    .member .photo { width: 168px; height: 208px; margin: 0 auto 18px; border-radius: 12px; overflow: hidden; background: #8a6a45; }
+    .member .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .member .name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .member .role { font-size: 13px; color: rgba(42,29,16,0.6); margin-bottom: 10px; }
+    .member .bio { font-size: 13px; color: rgba(42,29,16,0.72); line-height: 1.5; }
+
+    /* Trayectoria */
+    .timeline { position: relative; max-width: 760px; margin: 0 auto; padding-left: 34px; }
+    .timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, #357C65, rgba(53,124,101,0.15)); }
+    .tl-item { position: relative; padding: 0 0 34px; }
+    .tl-item::before { content: ""; position: absolute; left: -34px; top: 5px; width: 16px; height: 16px; border-radius: 50%; background: #f8c350; border: 3px solid #357C65; }
+    .tl-year { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #357C65; line-height: 1; margin-bottom: 8px; }
+
+    /* Charlas */
+    .events { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .event.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.25fr 1fr; align-items: stretch; }
+    .event .thumb { aspect-ratio: 16/10; }
+    .event.featured .thumb { aspect-ratio: auto; min-height: 340px; }
+    .event.featured .body { display: flex; flex-direction: column; justify-content: center; padding: 36px 36px; }
+    .event.featured h3 { font-size: 26px; }
+    .date-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: #357C65; padding: 5px 13px; border-radius: 999px; margin-bottom: 12px; }
+    .photo-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+    .photo-strip a { display: block; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; background: #8a6a45; }
+    .photo-strip img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s cubic-bezier(.2,.6,.2,1); }
+    .photo-strip a:hover img { transform: scale(1.1); }
+
+    /* Educación */
+    .course { padding: 44px 40px; margin-bottom: 40px; }
+    .course-head { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 44px; align-items: start; }
+    .meta-list { display: flex; flex-direction: column; gap: 12px; margin: 22px 0 26px; }
+    .meta-list div { display: flex; align-items: center; gap: 10px; font-size: 14.5px; }
+    .meta-list svg { flex: none; }
+    .module-row { padding: 14px 16px; background: rgba(255,255,255,0.45); border: 1px solid rgba(122,90,52,0.12); border-radius: 10px; display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; transition: background-color 0.35s, transform 0.35s; }
+    .module-row:hover { background-color: rgba(74,124,106,0.12); transform: translateX(5px); }
+    .module-row h4 { font-size: 14.5px; font-weight: 600; line-height: 1.4; margin-bottom: 2px; }
+    .module-row p { font-size: 12.5px; color: rgba(42,29,16,0.6); }
+    .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 34px; }
+    .gallery a { display: block; aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; background: #8a6a45; }
+    .gallery a.tall { grid-row: span 2; aspect-ratio: auto; }
+    .gallery img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.2,.6,.2,1); }
+    .gallery a:hover img { transform: scale(1.08); }
+
+    /* Alianzas */
+    .ally { padding: 34px 28px; text-align: center; }
+    .ally .mark { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 18px; background: #357C65; color: #f8e9c4; display: flex; align-items: center; justify-content: center; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 34px; }
+    .ally h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .ally p { font-size: 14px; color: rgba(42,29,16,0.72); line-height: 1.65; }
+
+    /* Estadísticas */
+    .stats { padding: 56px 24px; background: linear-gradient(180deg, #4a7c6a 0%, #3f6f5c 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 24px 60px -20px rgba(40,25,10,0.4); }
+    .stats-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    .stats-grid .n { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 58px; color: #f8e9c4; line-height: 1; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .stats-grid .l { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.6; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* Contacto */
+    .form-input:focus { border-color: #357C65 !important; box-shadow: 0 0 0 3px rgba(53,124,101,0.15); outline: none; }
+
+    /* Footer */
+    footer { background: #1c1409; padding: 64px 24px 32px; position: relative; }
+    footer a { text-decoration: none; }
+    footer .grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px; }
+    footer .col-title { font-size: 12px; font-weight: 600; color: rgba(248,195,80,0.9); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 18px; }
+    footer .links { display: flex; flex-direction: column; gap: 10px; }
+    footer .links a { font-size: 14px; color: rgba(255,255,255,0.7); }
+    footer .bottom { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(255,255,255,0.45); }
+
+    @media (max-width: 1100px) {
+      .site-header nav { gap: 18px; }
+      .nav-link { font-size: 13px; }
+    }
+    @media (max-width: 960px) {
+      .mobile-menu-btn { display: flex; }
+      .site-header nav { position: fixed; top: 0; right: -100%; width: 290px; height: 100vh; flex-direction: column; align-items: flex-start; gap: 0; background: #f0e8d8; padding: 80px 32px 40px; z-index: 200; box-shadow: -8px 0 32px rgba(0,0,0,0.15); transition: right 0.35s cubic-bezier(.4,0,.2,1); overflow-y: auto; }
+      .site-header nav.is-open { right: 0; }
+      .site-header nav .nav-link { display: block; font-size: 18px; padding: 14px 0; border-bottom: 1px solid rgba(42,29,16,0.08); width: 100%; }
+      .site-header nav .nav-link::after { display: none; }
+      .site-header nav .nav-cta { margin-top: 18px; width: 100%; text-align: center; padding: 14px 24px; }
+      .mobile-overlay { display: block; }
+      .mobile-overlay.is-open { opacity: 1; pointer-events: auto; }
+    }
+    @media (max-width: 860px) {
+      .section { padding: 64px 16px; }
+      .page-hero { padding: 56px 16px 24px; }
+      .site-header .bar { padding: 8px 16px; }
+      .site-header .logo img { height: 44px; }
+      .grid-3, .grid-2, .events { grid-template-columns: 1fr; }
+      .grid-5 { grid-template-columns: 1fr; }
+      .grid-5 > *, .grid-5 > *:nth-child(4), .grid-5 > *:nth-child(5) { grid-column: auto; }
+      .event.featured { display: block; }
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+      .event.featured { grid-column: auto; }
+      .course { padding: 28px 20px; }
+      .course-head { grid-template-columns: 1fr; gap: 28px; }
+      .gallery, .photo-strip { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 28px 12px; }
+      .stats-grid .n { font-size: 44px; }
+      .split { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .contact-box { padding: 28px 20px !important; }
+      footer { padding: 48px 16px 28px; }
+      footer .grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+      footer .bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</helmet>
+
+<header class="site-header">
+  <div class="bar">
+    <a href="index.html" class="logo"><img src="images/logo.jpeg" alt="Sueño Andino"></a>
+    <button class="mobile-menu-btn" aria-label="Menú" onClick="{{ toggleMenu }}">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+    <div class="mobile-overlay {{ overlayClass }}" onClick="{{ closeMenu }}"></div>
+    <nav class="{{ navClass }}">
+      <a href="index.html" class="nav-link" onClick="{{ closeMenu }}">Inicio</a>
+      <a href="Nosotros.html" class="nav-link" onClick="{{ closeMenu }}">Nosotros</a>
+      <a href="Experiencia.html" class="nav-link is-active" onClick="{{ closeMenu }}">Nuestra experiencia</a>
+      <a href="Charlas.html" class="nav-link" onClick="{{ closeMenu }}">Charlas y encuentros</a>
+      <a href="Educacion.html" class="nav-link" onClick="{{ closeMenu }}">Educación</a>
+      <a href="Alianzas.html" class="nav-link" onClick="{{ closeMenu }}">Alianzas</a>
+      <a href="Blog.html" class="nav-link" onClick="{{ closeMenu }}">Blog</a>
+      <a href="index.html#contacto" class="nav-cta cta-primary" onClick="{{ closeMenu }}">Contacto →</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap" data-reveal>
+    <p class="eyebrow">— Nuestra experiencia —</p>
+    <h1 class="h-display h1">Proyectos que <span style="font-style: italic;">regeneran</span></h1>
+    <p class="lede">Cuatro proyectos y programas destacados, diseñados para generar impacto real con metodologías de desarrollo territorial regenerativo.</p>
+  </div>
+</section>
+
+<!-- COMPLETAR: confirmar cuáles son los cuatro proyectos destacados definitivos (ubicación, año, resultados) -->
+<section class="section" style="padding-top: 40px;">
+  <div class="wrap">
+    <div class="grid-2">
+      <article class="card" data-reveal data-reveal-delay="1">
+        <div class="thumb" style="aspect-ratio: 16/10;"><img src="images/educacion-regenerativa.jpg" alt="Educación Regenerativa" loading="lazy"></div>
+        <div class="body">
+          <span class="num">01</span>
+          <h3 style="font-size: 22px;">Educación Regenerativa</h3>
+          <p>Procesos formativos que fortalecen capacidades locales, liderazgo comunitario y cultura regenerativa, mediante aprendizajes vivenciales en territorio.</p>
+          <a class="more" href="Educacion.html">Ver los cursos →</a>
+        </div>
+      </article>
+      <article class="card" data-reveal data-reveal-delay="2">
+        <div class="thumb" style="aspect-ratio: 16/10;"><img src="images/emprendimiento-social.jpg" alt="Emprendimiento Social" loading="lazy"></div>
+        <div class="body">
+          <span class="num">02</span>
+          <h3 style="font-size: 22px;">Emprendimiento Social</h3>
+          <p>Impulsamos proyectos con sentido regenerativo creando valor económico y social. Acompañamos empresas y comunidades para activar cadenas de valor que cuidan la vida.</p>
+          
+        </div>
+      </article>
+      <article class="card" data-reveal data-reveal-delay="1">
+        <div class="thumb" style="aspect-ratio: 16/10;"><img src="images/consultoria-territorial.jpg" alt="Cadenas de Valor Regenerativas" loading="lazy"></div>
+        <div class="body">
+          <span class="num">03</span>
+          <h3 style="font-size: 22px;">Cadenas de Valor Regenerativas</h3>
+          <p>Codiseñamos cadenas de valor que integran gobernanza colaborativa e inversión público-privada para orientar el desarrollo territorial hacia soluciones sostenibles.</p>
+          
+        </div>
+      </article>
+      <article class="card" data-reveal data-reveal-delay="2">
+        <div class="thumb" style="aspect-ratio: 16/10;"><img src="images/galeria-converge.jpg" alt="Converge 2026" loading="lazy"></div>
+        <div class="body">
+          <span class="num">04</span>
+          <h3 style="font-size: 22px;">Converge 2026</h3>
+          <p>Encuentro de Regeneración Territorial en Latinoamérica: más de 200 personas de Chile, Perú, Costa Rica y México compartieron tres días de talleres, diálogos y prácticas en territorio.</p>
+          <a class="more" href="Blog Post.html?post=converge-2026">Leer la crónica →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div data-reveal><div class="n">11</div><div class="l">Proyectos<br>exitosos</div></div>
+    <div data-reveal data-reveal-delay="1"><div class="n">1.100+</div><div class="l">Personas impactadas<br>en charlas y talleres</div></div>
+    <div data-reveal data-reveal-delay="2"><div class="n">+3</div><div class="l">Costa Rica, Perú<br>y México</div></div>
+  </div>
+</section>
+
+<section class="section" style="padding: 80px 24px;">
+  <div class="wrap" style="max-width: 760px; text-align: center;" data-reveal>
+    <h2 class="h-display h2" style="margin-bottom: 18px;">¿Tienes un territorio <span style="font-style: italic;">que acompañar</span>?</h2>
+    <p class="lede" style="margin-bottom: 30px;">Conversemos sobre cómo diseñar juntos un proceso regenerativo para tu comunidad u organización.</p>
+    <a href="index.html#contacto" class="btn btn-green cta-primary">Escríbenos <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="grid">
+    <div>
+      <img src="images/logo.jpeg" alt="Sueño Andino" style="height: 56px; width: auto; margin-bottom: 20px;">
+      <p style="font-family: 'Instrument Serif', serif; font-size: 22px; font-style: italic; color: rgba(248,233,196,0.9); line-height: 1.4; max-width: 340px;">Regeneramos desde y hacia Latinoamérica.</p>
+    </div>
+    <div>
+      <p class="col-title">Conócenos</p>
+      <div class="links">
+        <a href="Nosotros.html">Nosotros</a>
+        <a href="Experiencia.html">Nuestra experiencia</a>
+        <a href="Alianzas.html">Alianzas</a>
+      </div>
+    </div>
+    <div>
+      <p class="col-title">Aprende y participa</p>
+      <div class="links">
+        <a href="Educacion.html">Educación</a>
+        <a href="Charlas.html">Charlas y encuentros</a>
+        <a href="Blog.html">Blog</a>
+      </div>
+    </div>
+    <div>
+      <p class="col-title">Contacto</p>
+      <div class="links">
+        <a href="mailto:contacto@sueñoandino.org" style="color: rgba(255,255,255,0.85);">contacto@sueñoandino.org</a>
+        <a href="https://www.instagram.com/ongsuenoandino/" target="_blank" rel="noopener">@ongsuenoandino</a>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <p>© 2026 Sueño Andino. Todos los derechos reservados.</p>
+    <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+      <a href="#" style="color: rgba(255,255,255,0.45);">Políticas de cookies</a>
+      <a href="#" style="color: rgba(255,255,255,0.45);">Términos y condiciones</a>
+      <a href="#" style="color: rgba(255,255,255,0.45);">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const reveal = (el) => el.classList.add('is-visible');
+    const inView = (el) => {
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < vh - 40 && r.bottom > 0;
+    };
+    const checkAll = () => {
+      document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach(el => { if (inView(el)) reveal(el); });
+    };
+    requestAnimationFrame(() => {
+      checkAll();
+      if (typeof IntersectionObserver !== 'undefined') {
+        this._observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) { reveal(entry.target); this._observer.unobserve(entry.target); }
+          });
+        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach(el => this._observer.observe(el));
+      }
+    });
+    this._onRevealScroll = () => checkAll();
+    window.addEventListener('scroll', this._onRevealScroll, { passive: true });
+    window.addEventListener('resize', this._onRevealScroll, { passive: true });
+    this._safetyTimer = setTimeout(() => {
+      document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach(reveal);
+    }, 1200);
+
+  }
+
+  componentWillUnmount() {
+    if (this._observer) this._observer.disconnect();
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onRevealScroll) {
+      window.removeEventListener('scroll', this._onRevealScroll);
+      window.removeEventListener('resize', this._onRevealScroll);
+    }
+    if (this._safetyTimer) clearTimeout(this._safetyTimer);
+  }
+
+  state = { menuOpen: false };
+
+  renderVals() {
+    return {
+      menuOpen: this.state.menuOpen,
+      navClass: this.state.menuOpen ? 'is-open' : '',
+      overlayClass: this.state.menuOpen ? 'is-open' : '',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

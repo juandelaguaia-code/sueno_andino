@@ -4,15 +4,19 @@ Sitio estático (HTML + `support.js`) de la Fundación Sueño Andino.
 
 ## Estructura
 
-| Archivo | Página |
+| Archivo | Sección |
 |---|---|
 | `index.html` | Inicio |
-| `Nosotros.html` | Nosotros / equipo |
+| `Nosotros.html` | Nosotros: propósito, trayectoria y equipo |
+| `Experiencia.html` | Nuestra experiencia: cuatro proyectos destacados |
+| `Charlas.html` | Charlas y encuentros: galería de participaciones |
+| `Educacion.html` | Educación: los tres cursos (con fotos) |
+| `Alianzas.html` | Alianzas: organizaciones colaboradoras |
 | `Blog.html` | Listado del blog |
 | `Blog Post.html` | Artículo (`?post=<id>`) |
-| `Imagenes.html` | Galería |
+| `Imagenes.html` | Redirección a `Charlas.html` (URL antigua) |
 | `support.js` | Runtime que renderiza las páginas (necesario) |
-| `images/` | Imágenes del sitio |
+| `images/` | Imágenes del sitio (`images/educacion/<curso>/` = fotos de los cursos) |
 
 ## Ver en local
 
