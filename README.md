@@ -28,4 +28,6 @@ Abrir http://localhost:8000
 
 ## Publicar en el servidor
 
-Subir **todo el contenido de esta carpeta** (excepto `.git`, `README.md`) a la raíz pública del hosting (`public_html/`, `www/`, etc.). No requiere build.
+**Easypanel / Docker:** el repositorio incluye un `Dockerfile` (nginx sirviendo los archivos estáticos, config en `docker/nginx.conf`). En Easypanel usar el método de build **Dockerfile** con la rama que se quiera publicar y el puerto 80.
+
+**Hosting tradicional:** subir **todo el contenido de esta carpeta** (excepto `.git`, `README.md`, `Dockerfile`, `docker/`) a la raíz pública del hosting (`public_html/`, `www/`, etc.). No requiere build.
