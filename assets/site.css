@@ -4,7 +4,7 @@
 @font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/assets/fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); }
 
 :root {
-  --ink: #2a1d10; --ink-2: rgba(42,29,16,.76); --ink-3: rgba(42,29,16,.58);
+  --ink: #2a1d10; --ink-2: #4a3826; --ink-3: #6b5843;
   --green: #357c65; --green-2: #4a7c6a; --gold: #f8c350;
   --cream: #f4ebd9; --cream-2: #f0e8d8; --paper: rgba(246,238,223,.94);
   --line: rgba(122,90,52,.18); --shadow: 0 22px 46px -18px rgba(40,25,10,.32);
@@ -14,7 +14,9 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; }
 body { font-family: var(--sans); color: var(--ink); background: #b89060; overflow-x: hidden; line-height: 1.5; }
-body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: url("/images/bg-terrazzo.svg") center/cover no-repeat; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -2; background: url("/images/bg-terrazzo.svg") center/cover no-repeat; }
+/* Velo cálido sobre el mapa: mantiene la textura y da contraste al texto */
+body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(243,233,214,.72) 0%, rgba(238,226,203,.6) 45%, rgba(232,217,190,.55) 100%); }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 .serif { font-family: var(--serif); font-weight: 400; }
@@ -318,9 +320,16 @@ a.ally:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
   .article { margin-top: -30px; padding: 30px 20px 36px; border-radius: 16px; }
   .featured .thumb { min-height: 220px; }
   .featured .body { padding: 26px 22px; }
-  .site-footer { padding: 48px 16px 28px; }
-  .site-footer .grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+  .site-footer { padding: 44px 20px 26px; }
+  .site-footer .grid { grid-template-columns: 1fr 1fr; gap: 30px 20px; padding-bottom: 30px; margin-bottom: 20px; }
+  .site-footer .f-brand { grid-column: 1 / -1; text-align: center; padding-bottom: 26px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .site-footer .f-contact { grid-column: 1 / -1; }
+  .site-footer .logo-f { margin: 0 auto 14px; height: 48px; }
+  .site-footer .tagline { font-size: 20px; margin: 0 auto; }
+  .site-footer .col-title { font-size: 11px; margin-bottom: 10px; }
+  .site-footer .links { gap: 0; font-size: 15px; }
+  .site-footer .links a { padding: 7px 0; }
+  .site-footer .f-contact .links a { word-break: break-all; }
   .site-footer .bottom { text-align: center; }
-  .site-footer .logo-f { margin-left: auto; margin-right: auto; }
   .lightbox .stage { padding: 64px 12px; }
 }

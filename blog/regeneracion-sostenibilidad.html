@@ -16,7 +16,7 @@
 <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="/images/galeria8.webp" fetchpriority="high">
-<link rel="stylesheet" href="/assets/site.css?v=79ac887c">
+<link rel="stylesheet" href="/assets/site.css?v=a062d2c4">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/assets/site.js?v=b65aa8a2" defer></script>
 </head>
@@ -30,11 +30,11 @@
     <div class="nav-overlay"></div>
     <nav class="site-nav" id="site-nav" aria-label="Principal">
       <a href="/" class="nav-link">Inicio</a>
-      <a href="/nosotros" class="nav-link">Nosotros</a>
       <a href="/experiencia" class="nav-link">Nuestra experiencia</a>
       <a href="/charlas" class="nav-link">Charlas y encuentros</a>
       <a href="/educacion" class="nav-link">Educación</a>
       <a href="/alianzas" class="nav-link">Alianzas</a>
+      <a href="/nosotros" class="nav-link">Nosotros</a>
       <a href="/blog" class="nav-link" aria-current="page">Blog</a>
       <a href="/#contacto" class="nav-cta">Contacto →</a>
     </nav>
@@ -86,19 +86,19 @@
 
 <footer class="site-footer">
   <div class="grid">
-    <div>
+    <div class="f-brand">
       <img src="/images/logo.webp" width="375" height="249" alt="Sueño Andino" class="logo-f" loading="lazy">
       <p class="tagline">Regeneramos desde y hacia Latinoamérica.</p>
     </div>
     <div>
+      <p class="col-title">Nuestro trabajo</p>
+      <div class="links"><a href="/experiencia">Nuestra experiencia</a><a href="/charlas">Charlas y encuentros</a><a href="/educacion">Educación</a></div>
+    </div>
+    <div>
       <p class="col-title">Conócenos</p>
-      <div class="links"><a href="/nosotros">Nosotros</a><a href="/experiencia">Nuestra experiencia</a><a href="/alianzas">Alianzas</a></div>
+      <div class="links"><a href="/alianzas">Alianzas</a><a href="/nosotros">Nosotros</a><a href="/blog">Blog</a></div>
     </div>
-    <div>
-      <p class="col-title">Aprende y participa</p>
-      <div class="links"><a href="/educacion">Educación</a><a href="/charlas">Charlas y encuentros</a><a href="/blog">Blog</a></div>
-    </div>
-    <div>
+    <div class="f-contact">
       <p class="col-title">Contacto</p>
       <div class="links"><a href="mailto:contacto@sueñoandino.org">contacto@sueñoandino.org</a><a href="https://www.instagram.com/ongsuenoandino/" target="_blank" rel="noopener">@ongsuenoandino</a></div>
     </div>
