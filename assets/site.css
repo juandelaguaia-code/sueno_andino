@@ -15,7 +15,7 @@
 html { scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; }
 body { font-family: var(--sans); color: var(--ink); background: #b89060; overflow-x: hidden; line-height: 1.5; }
 body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: url("/images/bg-terrazzo.svg") center/cover no-repeat; }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 .serif { font-family: var(--serif); font-weight: 400; }
 .it { font-style: italic; }
