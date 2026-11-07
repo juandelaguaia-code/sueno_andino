@@ -4,6 +4,7 @@
 @font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/assets/fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); }
 
 :root {
+  color-scheme: only light;
   --ink: #2a1d10; --ink-2: #4a3826; --ink-3: #6b5843;
   --green: #357c65; --green-2: #4a7c6a; --gold: #f8c350;
   --cream: #f4ebd9; --cream-2: #f0e8d8; --paper: rgba(246,238,223,.94);
