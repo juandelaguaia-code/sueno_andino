@@ -17,12 +17,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-text-size-adju
 body { font-family: var(--sans); color: var(--ink); background: #b89060; overflow-x: hidden; line-height: 1.5; }
 body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: url("/images/bg-terrazzo.svg") center/cover no-repeat; }
 
-/* Contraste sobre el mapa: halo luminoso en títulos y panel suave detrás de las cabeceras */
-.page-hero, .sec-head, .year-label, .ally-group h2, .ig-text { text-shadow: 0 0 22px rgba(246,238,223,.95), 0 0 8px rgba(246,238,223,.85), 0 0 2px rgba(246,238,223,.9); }
-.page-hero .wrap, .sec-head, .ig-text { position: relative; isolation: isolate; }
-.page-hero .wrap::before, .sec-head::before, .ig-text::before { content: ""; position: absolute; z-index: -1; inset: -40px -6%; background: radial-gradient(ellipse closest-side, rgba(246,238,223,.9), rgba(246,238,223,.72) 55%, rgba(246,238,223,0)); pointer-events: none; }
-.page-hero .chips, .page-hero .intro-cols, .ig-text .btn { text-shadow: none; }
-.page-hero .lede, .sec-head .lede { text-shadow: 0 0 12px rgba(246,238,223,.95), 0 0 3px rgba(246,238,223,.9); }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 .serif { font-family: var(--serif); font-weight: 400; }
@@ -122,6 +116,7 @@ a.card:hover .thumb img { transform: scale(1.06); }
 .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--green-2); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex: none; }
 .who strong { display: block; font-size: 14px; }
 .who span { font-size: 12.5px; color: var(--ink-3); }
+.who .avatar { color: #fff; font-size: 15px; }
 
 /* Instagram (portada) */
 .ig { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: center; }
